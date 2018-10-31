@@ -5,6 +5,17 @@ var newMap
 var markers = []
 
 /**
+ *  Register Service Worker
+ */
+if('serviceWorker' in navigator){
+  navigator.serviceWorker
+  .register('/serviceworker.js')
+  .catch(function(err){
+    console.error(err);
+  });
+}
+
+/**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
  */
 document.addEventListener('DOMContentLoaded', (event) => {
@@ -181,7 +192,6 @@ createRestaurantHTML = (restaurant) => {
   more.innerHTML = 'View Details';
   more.href = DBHelper.urlForRestaurant(restaurant);
   more.tabIndex = 4;
-  console.log(more);
   li.append(more)
 
   return li
